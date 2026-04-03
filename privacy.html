@@ -8,67 +8,95 @@
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 800px; margin: 60px auto; padding: 0 24px; color: #1a1a2e; line-height: 1.7; }
     h1 { font-size: 2rem; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 16px; }
     h2 { font-size: 1.2rem; font-weight: 600; margin-top: 2rem; color: #2d3748; }
+    h3 { font-size: 1rem; font-weight: 600; margin-top: 1.5rem; color: #4a5568; }
     p, li { color: #4a5568; }
+    ul { padding-left: 1.5rem; }
+    .highlight-box { background: #f7fafc; border-left: 4px solid #4299e1; padding: 16px 20px; border-radius: 4px; margin: 1.5rem 0; }
+    .highlight-box p { margin: 0.25rem 0; }
     footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid #e2e8f0; color: #a0aec0; font-size: 0.875rem; }
   </style>
 </head>
 <body>
   <h1>Privacy Policy</h1>
-  <p><strong>Effective date:</strong> March 25, 2026 &nbsp;|&nbsp; <strong>Last updated:</strong> March 25, 2026</p>
-  <p>This Privacy Policy explains how Nashi Engineering ("we", "us", or "our") collects, uses, and protects information in connection with the Nashi Platform.</p>
+  <p><strong>Effective date:</strong> April 3, 2026</p>
+  <p>This Privacy Policy explains how Nashi Engineering ("we", "us", "our") collects, uses, and protects information in connection with the Nashi Platform, including its integration with third-party social media APIs.</p>
 
   <h2>1. Information We Collect</h2>
-  <p>We collect information you provide directly, including:</p>
+  <p>We collect the following categories of data:</p>
   <ul>
-    <li>Account registration information (name, email address, organisation)</li>
-    <li>Business data entered into the platform (customer records, project details, compliance assessments)</li>
-    <li>Usage logs and activity records generated during platform use</li>
-    <li>Authentication tokens for connected third-party services (e.g., TikTok, LinkedIn, Twitter/X)</li>
+    <li>Account registration data (name, email address, organisation)</li>
+    <li>Business data entered into the platform (client records, project data, content drafts)</li>
+    <li>Usage logs (actions taken within the platform, timestamps)</li>
+    <li>OAuth tokens for connected third-party services (TikTok, Twitter/X) to enable content publishing</li>
   </ul>
 
-  <h2>2. How We Use Information</h2>
-  <p>We use collected information to:</p>
+  <h2>2. TikTok API Integration</h2>
+  <div class="highlight-box">
+    <p><strong>This section specifically describes our use of the TikTok Content Posting API.</strong></p>
+  </div>
+
+  <h3>2a. What We Access</h3>
+  <p>Our platform uses the following TikTok API scopes:</p>
   <ul>
-    <li>Provide and operate the platform services</li>
-    <li>Generate AI-assisted content drafts and business recommendations</li>
-    <li>Stage content drafts for human review prior to any external publication</li>
-    <li>Maintain audit logs for compliance and governance purposes</li>
-    <li>Improve platform functionality and security</li>
+    <li><strong>video.publish</strong> — to upload and publish approved video content to TikTok on behalf of the authorised account</li>
+    <li><strong>video.upload</strong> — to stage video content before publishing</li>
+    <li><strong>user.info.basic</strong> — to verify the connected TikTok account identity (open_id and display name only)</li>
   </ul>
 
-  <h2>3. Social Media API Usage</h2>
-  <p>When you connect social media accounts (TikTok, LinkedIn, Twitter/X), we store OAuth tokens securely to enable draft creation and content staging. We do not access, read, or store your social media followers, messages, or engagement data beyond what is required for content posting operations. Tokens are encrypted at rest using industry-standard encryption.</p>
-  <p>All content published to social media platforms via this platform requires explicit human approval — no content is automatically published without a human reviewer authorising the action.</p>
+  <h3>2b. What We Do NOT Access</h3>
+  <p>We do not request or access the following TikTok data:</p>
+  <ul>
+    <li>Follower lists or following lists</li>
+    <li>Direct messages or inbox content</li>
+    <li>Analytics, engagement metrics, or video statistics</li>
+    <li>Comments on any videos</li>
+    <li>Private account information beyond basic identity verification</li>
+    <li>Any data from TikTok accounts other than the one explicitly authorised by the user</li>
+  </ul>
+
+  <h3>2c. How TikTok Data Is Used</h3>
+  <p>TikTok API data is used solely to:</p>
+  <ul>
+    <li>Publish video content that has been explicitly approved by an authorised human reviewer in the Nashi Platform dashboard</li>
+    <li>Confirm that the content was successfully delivered to TikTok</li>
+    <li>Store the resulting TikTok Publish ID in the content draft record for audit purposes</li>
+  </ul>
+  <p><strong>No content is ever published automatically.</strong> Every piece of content must pass through a human approval workflow before any API call to TikTok is made.</p>
+
+  <h3>2d. Data Retention</h3>
+  <p>TikTok OAuth access tokens are stored encrypted in our secrets management system (Vaultwarden, with AES-256 encryption) for as long as the integration is active. Tokens are deleted within 30 days if the integration is disconnected. The TikTok Publish ID stored in content draft records is retained indefinitely as part of the audit trail for published content.</p>
+
+  <h3>2e. User Rights — TikTok Connection</h3>
+  <p>You may revoke the Nashi Platform's access to your TikTok account at any time by:</p>
+  <ul>
+    <li>Visiting <strong>TikTok → Profile → Settings → Security → Authorised Apps</strong> and removing Nashi Platform</li>
+    <li>Contacting us at <a href="mailto:privacy@nashi.online">privacy@nashi.online</a> to request immediate token deletion on our end</li>
+  </ul>
+  <p>Upon revocation, we will delete your TikTok access token from our systems within 72 hours.</p>
+
+  <h3>2f. TikTok Privacy Policy</h3>
+  <p>Your use of TikTok is also governed by TikTok's own Privacy Policy, available at <a href="https://www.tiktok.com/legal/page/row/privacy-policy/en" target="_blank" rel="noopener">https://www.tiktok.com/legal/page/row/privacy-policy/en</a>.</p>
+
+  <h2>3. Twitter/X API Integration</h2>
+  <p>We use Twitter/X OAuth 1.0a to post approved content on behalf of the authorised account. We access the <strong>tweet.write</strong> scope only. We do not access direct messages, follower lists, or any data beyond the authenticated account's posting capability. Token management and user rights follow the same principles as described for TikTok above (Section 2d and 2e).</p>
 
   <h2>4. Data Sharing</h2>
-  <p>We do not sell personal data. We share data only:</p>
+  <p>We do not sell personal data. We share data only with:</p>
   <ul>
-    <li>With the social media platform APIs you explicitly authorise (TikTok, LinkedIn, Twitter/X)</li>
-    <li>As required by applicable law or legal process</li>
-    <li>With your consent</li>
+    <li>Social media APIs (TikTok, Twitter/X) that you explicitly authorise, limited to the scopes described above</li>
+    <li>Infrastructure providers (cloud hosting, CDN) under data processing agreements</li>
+    <li>Law enforcement or regulators where required by applicable law</li>
   </ul>
 
   <h2>5. Data Security</h2>
-  <p>We implement appropriate technical and organisational measures to protect your data, including encryption in transit (TLS) and at rest, role-based access controls, and regular security assessments. API credentials and OAuth tokens are stored using SOPS-encrypted secrets.</p>
+  <p>We implement TLS encryption in transit, role-based access controls, and encrypted secret storage (AES-256) for all API credentials. Access to API tokens is limited to the automated publishing system and authorised platform administrators.</p>
 
-  <h2>6. Data Retention</h2>
-  <p>We retain business data for the duration of the service relationship and as required by applicable law. You may request deletion of your account data by contacting us.</p>
+  <h2>6. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. We will post the updated policy on this page with a revised effective date. For significant changes, we will notify active users by email.</p>
 
-  <h2>7. Your Rights</h2>
-  <p>Depending on your jurisdiction, you may have rights to access, correct, delete, or port your personal data. To exercise these rights, contact <a href="mailto:privacy@nashi.online">privacy@nashi.online</a>.</p>
+  <h2>7. Contact</h2>
+  <p>Privacy enquiries: <a href="mailto:privacy@nashi.online">privacy@nashi.online</a></p>
 
-  <h2>8. Cookies</h2>
-  <p>The platform uses session cookies required for authentication. We do not use tracking or advertising cookies.</p>
-
-  <h2>9. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy. Material changes will be communicated to account holders. Continued use of the platform constitutes acceptance of the revised policy.</p>
-
-  <h2>10. Contact</h2>
-  <p>For privacy-related enquiries: <a href="mailto:privacy@nashi.online">privacy@nashi.online</a></p>
-
-  <footer>
-    &copy; 2026 Nashi Engineering. All rights reserved. &nbsp;|&nbsp;
-    <a href="/terms">Terms of Service</a>
-  </footer>
+  <footer>&copy; 2026 Nashi Engineering &nbsp;|&nbsp; <a href="/terms">Terms of Service</a></footer>
 </body>
 </html>
